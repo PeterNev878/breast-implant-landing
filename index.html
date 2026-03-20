@@ -6,7 +6,7 @@
   <title>Find Your Implant Match — Wansiri Hospital</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600&family=Sarabun:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -41,11 +41,13 @@
     html { scroll-behavior: smooth; }
 
     body {
-      font-family: 'Inter', sans-serif;
+      font-family: 'Inter', 'Sarabun', sans-serif;
       background: var(--bg);
       color: var(--text-dark);
       overflow-x: hidden;
     }
+
+    body.lang-th { font-family: 'Sarabun', 'Inter', sans-serif; }
 
     /* ─── NAV ─── */
     nav {
@@ -64,10 +66,7 @@
       transition: box-shadow 0.3s;
     }
 
-    .nav-logo img {
-      height: 30px;
-      object-fit: contain;
-    }
+    .nav-logo img { height: 30px; object-fit: contain; }
 
     .nav-right {
       display: flex;
@@ -88,7 +87,6 @@
     .nav-cta {
       background: var(--teal);
       color: #fff;
-      font-family: 'Inter', sans-serif;
       font-size: 13.5px;
       font-weight: 600;
       padding: 10px 24px;
@@ -98,9 +96,36 @@
       transition: background 0.25s, box-shadow 0.25s, transform 0.2s;
     }
 
-    .nav-cta:hover {
-      background: var(--teal-dark);
-      transform: translateY(-1px);
+    .nav-cta:hover { background: var(--teal-dark); transform: translateY(-1px); }
+
+    /* ─── LANG TOGGLE ─── */
+    .lang-toggle {
+      display: flex;
+      align-items: center;
+      background: rgba(0,184,186,0.08);
+      border-radius: 100px;
+      padding: 3px;
+      gap: 2px;
+    }
+
+    .lang-btn {
+      background: transparent;
+      border: none;
+      font-family: 'Inter', sans-serif;
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--text-soft);
+      padding: 5px 13px;
+      border-radius: 100px;
+      cursor: pointer;
+      transition: all 0.2s;
+      letter-spacing: 0.3px;
+    }
+
+    .lang-btn.active {
+      background: var(--teal);
+      color: #fff;
+      box-shadow: 0 2px 8px rgba(0,184,186,0.28);
     }
 
     /* ─── HERO ─── */
@@ -224,7 +249,6 @@
       gap: 10px;
       background: #fff;
       color: var(--teal-dark);
-      font-family: 'Inter', sans-serif;
       font-size: 16px;
       font-weight: 700;
       padding: 16px 38px;
@@ -234,22 +258,13 @@
       transition: transform 0.25s, box-shadow 0.25s;
     }
 
-    .btn-start:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 16px 48px rgba(0,0,0,0.22);
-    }
-
-    .btn-start .arrow {
-      display: inline-block;
-      transition: transform 0.25s;
-    }
-
+    .btn-start:hover { transform: translateY(-3px); box-shadow: 0 16px 48px rgba(0,0,0,0.22); }
+    .btn-start .arrow { display: inline-block; transition: transform 0.25s; }
     .btn-start:hover .arrow { transform: translateX(4px); }
 
     .hero-scroll {
       position: absolute;
-      bottom: 36px;
-      left: 50%;
+      bottom: 36px; left: 50%;
       transform: translateX(-50%);
       z-index: 2;
       display: flex;
@@ -263,8 +278,7 @@
     }
 
     .scroll-bar {
-      width: 1px;
-      height: 42px;
+      width: 1px; height: 42px;
       background: linear-gradient(to bottom, transparent, rgba(255,255,255,0.55));
       animation: grow 2.2s ease-in-out infinite;
     }
@@ -277,19 +291,11 @@
     }
 
     /* ─── QUIZ SECTION ─── */
-    .quiz-section {
-      padding: 80px 52px 100px;
-    }
-
-    .quiz-wrapper {
-      max-width: 1160px;
-      margin: 0 auto;
-    }
+    .quiz-section { padding: 80px 52px 100px; }
+    .quiz-wrapper { max-width: 1160px; margin: 0 auto; }
 
     /* ─── PROGRESS HEADER ─── */
-    .quiz-progress {
-      margin-bottom: 56px;
-    }
+    .quiz-progress { margin-bottom: 56px; }
 
     .progress-track {
       display: flex;
@@ -316,29 +322,13 @@
       z-index: 1;
     }
 
-    .step-marker.active {
-      background: var(--teal);
-      color: #fff;
-      box-shadow: 0 4px 16px rgba(0,184,186,0.35);
-      transform: scale(1.1);
-    }
+    .step-marker.active { background: var(--teal); color: #fff; box-shadow: 0 4px 16px rgba(0,184,186,0.35); transform: scale(1.1); }
+    .step-marker.done   { background: var(--teal-light); color: var(--teal-dark); }
 
-    .step-marker.done {
-      background: var(--teal-light);
-      color: var(--teal-dark);
-    }
-
-    .step-connector {
-      flex: 1;
-      height: 3px;
-      background: #E8E8F0;
-      position: relative;
-      overflow: hidden;
-    }
+    .step-connector { flex: 1; height: 3px; background: #E8E8F0; position: relative; overflow: hidden; }
 
     .step-connector-fill {
-      position: absolute;
-      inset: 0;
+      position: absolute; inset: 0;
       background: var(--teal);
       transform: scaleX(0);
       transform-origin: left;
@@ -354,54 +344,20 @@
       margin: 0 auto;
     }
 
-    .step-labels span {
-      font-size: 11.5px;
-      font-weight: 500;
-      color: var(--text-soft);
-      text-align: center;
-      width: 40px;
-      transition: color 0.3s;
-    }
-
+    .step-labels span { font-size: 11.5px; font-weight: 500; color: var(--text-soft); text-align: center; width: 40px; transition: color 0.3s; }
     .step-labels span.active-label { color: var(--teal-dark); font-weight: 600; }
 
     /* ─── QUIZ BODY ─── */
-    .quiz-body {
-      position: relative;
-      min-height: 580px;
-    }
+    .quiz-body { position: relative; min-height: 580px; }
 
-    /* ─── QUIZ STEP ─── */
-    .quiz-step {
-      display: none;
-      grid-template-columns: 1fr 420px;
-      gap: 52px;
-      align-items: start;
-    }
+    .quiz-step { display: none; grid-template-columns: 1fr 420px; gap: 52px; align-items: start; }
+    .quiz-step.active { display: grid; animation: stepIn 0.45s cubic-bezier(0.22, 1, 0.36, 1) forwards; }
 
-    .quiz-step.active {
-      display: grid;
-      animation: stepIn 0.45s cubic-bezier(0.22, 1, 0.36, 1) forwards;
-    }
+    @keyframes stepIn { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: translateY(0); } }
+    .quiz-step.exit { animation: stepOut 0.3s cubic-bezier(0.4, 0, 1, 1) forwards; }
+    @keyframes stepOut { from { opacity: 1; transform: translateY(0); } to { opacity: 0; transform: translateY(-20px); } }
 
-    @keyframes stepIn {
-      from { opacity: 0; transform: translateY(24px); }
-      to   { opacity: 1; transform: translateY(0); }
-    }
-
-    .quiz-step.exit {
-      animation: stepOut 0.3s cubic-bezier(0.4, 0, 1, 1) forwards;
-    }
-
-    @keyframes stepOut {
-      from { opacity: 1; transform: translateY(0); }
-      to   { opacity: 0; transform: translateY(-20px); }
-    }
-
-    /* ─── QUIZ LEFT ─── */
-    .quiz-left {
-      padding-top: 8px;
-    }
+    .quiz-left { padding-top: 8px; }
 
     .step-badge {
       display: inline-flex;
@@ -416,33 +372,15 @@
       margin-bottom: 18px;
     }
 
-    /* Step color theming */
     .step-1 .step-badge { background: var(--pink-mid);     color: #B03050; }
     .step-2 .step-badge { background: var(--lavender-mid); color: #5030B0; }
     .step-3 .step-badge { background: var(--peach-mid);    color: #A03818; }
 
-    .quiz-q {
-      font-family: 'Poppins', sans-serif;
-      font-size: clamp(24px, 2.8vw, 34px);
-      font-weight: 700;
-      line-height: 1.22;
-      margin-bottom: 10px;
-    }
-
-    .quiz-hint {
-      font-size: 15px;
-      color: var(--text-mid);
-      line-height: 1.65;
-      margin-bottom: 32px;
-    }
+    .quiz-q { font-family: 'Poppins', sans-serif; font-size: clamp(24px, 2.8vw, 34px); font-weight: 700; line-height: 1.22; margin-bottom: 10px; }
+    .quiz-hint { font-size: 15px; color: var(--text-mid); line-height: 1.65; margin-bottom: 32px; }
 
     /* ─── OPTION CARDS ─── */
-    .options-grid {
-      display: grid;
-      gap: 14px;
-      margin-bottom: 36px;
-    }
-
+    .options-grid { display: grid; gap: 14px; margin-bottom: 36px; }
     .options-grid.cols-2 { grid-template-columns: 1fr 1fr; }
     .options-grid.cols-3 { grid-template-columns: 1fr 1fr 1fr; }
 
@@ -458,436 +396,132 @@
       overflow: hidden;
     }
 
-    .option-card:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 10px 32px rgba(0,0,0,0.09);
-    }
+    .option-card:hover { transform: translateY(-3px); box-shadow: 0 10px 32px rgba(0,0,0,0.09); }
+    .option-card.selected { transform: translateY(-3px); box-shadow: 0 10px 36px rgba(0,0,0,0.10); }
 
-    .option-card.selected {
-      transform: translateY(-3px);
-      box-shadow: 0 10px 36px rgba(0,0,0,0.10);
-    }
-
-    /* Step-specific selected states */
-    .step-1 .option-card.selected {
-      border-color: var(--pink);
-      background: var(--pink-sel);
-    }
-
-    .step-2 .option-card.selected {
-      border-color: var(--lavender);
-      background: var(--lavender-sel);
-    }
-
-    .step-3 .option-card.selected {
-      border-color: var(--peach);
-      background: var(--peach-sel);
-    }
+    .step-1 .option-card.selected { border-color: var(--pink);     background: var(--pink-sel); }
+    .step-2 .option-card.selected { border-color: var(--lavender); background: var(--lavender-sel); }
+    .step-3 .option-card.selected { border-color: var(--peach);    background: var(--peach-sel); }
 
     .option-check {
-      position: absolute;
-      top: 14px; right: 14px;
+      position: absolute; top: 14px; right: 14px;
       width: 22px; height: 22px;
       border-radius: 50%;
       background: var(--teal);
       color: #fff;
       font-size: 12px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
+      display: flex; align-items: center; justify-content: center;
       opacity: 0;
       transform: scale(0.5);
       transition: opacity 0.2s, transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
     }
 
-    .option-card.selected .option-check {
-      opacity: 1;
-      transform: scale(1);
-    }
+    .option-card.selected .option-check { opacity: 1; transform: scale(1); }
 
-    .option-emoji {
-      font-size: 28px;
-      margin-bottom: 12px;
-      line-height: 1;
-    }
-
-    .option-title {
-      font-family: 'Poppins', sans-serif;
-      font-size: 15px;
-      font-weight: 700;
-      margin-bottom: 6px;
-      line-height: 1.3;
-    }
-
-    .option-desc {
-      font-size: 12.5px;
-      color: var(--text-mid);
-      line-height: 1.6;
-    }
+    .option-emoji { font-size: 28px; margin-bottom: 12px; line-height: 1; }
+    .option-title { font-family: 'Poppins', sans-serif; font-size: 15px; font-weight: 700; margin-bottom: 6px; line-height: 1.3; }
+    .option-desc  { font-size: 12.5px; color: var(--text-mid); line-height: 1.6; }
 
     /* ─── NEXT BUTTON ─── */
     .next-btn {
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      font-family: 'Inter', sans-serif;
-      font-size: 15px;
-      font-weight: 700;
+      display: inline-flex; align-items: center; gap: 10px;
+      font-size: 15px; font-weight: 700;
       padding: 14px 34px;
-      border-radius: 100px;
-      border: none;
-      cursor: pointer;
+      border-radius: 100px; border: none; cursor: pointer;
       transition: all 0.3s cubic-bezier(0.22, 1, 0.36, 1);
-      background: #E0E0EE;
-      color: #AAAABB;
-      pointer-events: none;
+      background: #E0E0EE; color: #AAAABB; pointer-events: none;
     }
 
-    .next-btn.enabled {
-      background: var(--teal);
-      color: #fff;
-      pointer-events: all;
-      box-shadow: 0 6px 24px rgba(0,184,186,0.30);
-    }
-
-    .next-btn.enabled:hover {
-      background: var(--teal-dark);
-      transform: translateY(-2px);
-      box-shadow: 0 10px 32px rgba(0,184,186,0.38);
-    }
-
-    .btn-arrow {
-      display: inline-block;
-      transition: transform 0.25s;
-    }
-
+    .next-btn.enabled { background: var(--teal); color: #fff; pointer-events: all; box-shadow: 0 6px 24px rgba(0,184,186,0.30); }
+    .next-btn.enabled:hover { background: var(--teal-dark); transform: translateY(-2px); box-shadow: 0 10px 32px rgba(0,184,186,0.38); }
+    .btn-arrow { display: inline-block; transition: transform 0.25s; }
     .next-btn.enabled:hover .btn-arrow { transform: translateX(4px); }
 
-    /* ─── QUIZ RIGHT (infographic panel) ─── */
-    .quiz-right {
-      position: sticky;
-      top: 92px;
-    }
+    .quiz-right { position: sticky; top: 92px; }
 
     .ref-label {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      font-size: 11px;
-      font-weight: 700;
-      letter-spacing: 1.5px;
-      text-transform: uppercase;
-      color: var(--text-soft);
-      margin-bottom: 14px;
+      display: inline-flex; align-items: center; gap: 6px;
+      font-size: 11px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase;
+      color: var(--text-soft); margin-bottom: 14px;
     }
 
-    .ref-label::before {
-      content: '';
-      display: inline-block;
-      width: 16px; height: 2px;
-      background: var(--text-soft);
-      border-radius: 1px;
-    }
+    .ref-label::before { content: ''; display: inline-block; width: 16px; height: 2px; background: var(--text-soft); border-radius: 1px; }
 
     .infographic-frame {
-      border-radius: 24px;
-      overflow: hidden;
+      border-radius: 24px; overflow: hidden;
       box-shadow: 0 20px 60px rgba(0,0,0,0.11);
-      transition: transform 0.4s cubic-bezier(0.22,1,0.36,1),
-                  box-shadow 0.4s;
+      transition: transform 0.4s cubic-bezier(0.22,1,0.36,1), box-shadow 0.4s;
     }
 
-    .infographic-frame:hover {
-      transform: translateY(-6px);
-      box-shadow: 0 30px 80px rgba(0,0,0,0.15);
-    }
-
-    .infographic-frame img {
-      width: 100%;
-      display: block;
-    }
+    .infographic-frame:hover { transform: translateY(-6px); box-shadow: 0 30px 80px rgba(0,0,0,0.15); }
+    .infographic-frame img { width: 100%; display: block; }
 
     /* ─── RESULT STEP ─── */
-    .result-step {
-      grid-template-columns: 1fr !important;
-      gap: 0 !important;
-    }
-
+    .result-step { grid-template-columns: 1fr !important; gap: 0 !important; }
     .result-step.active { display: grid !important; }
 
-    .result-header {
-      text-align: center;
-      margin-bottom: 52px;
-    }
+    .result-header { text-align: center; margin-bottom: 52px; }
 
     .result-confetti-badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
+      display: inline-flex; align-items: center; gap: 8px;
       background: linear-gradient(135deg, var(--teal-light), var(--mint-light));
       border: 1.5px solid var(--mint-mid);
-      color: var(--teal-dark);
-      font-size: 13px;
-      font-weight: 700;
-      letter-spacing: 0.5px;
-      padding: 8px 20px;
-      border-radius: 100px;
-      margin-bottom: 20px;
+      color: var(--teal-dark); font-size: 13px; font-weight: 700; letter-spacing: 0.5px;
+      padding: 8px 20px; border-radius: 100px; margin-bottom: 20px;
     }
 
-    .result-header h2 {
-      font-family: 'Poppins', sans-serif;
-      font-size: clamp(28px, 3.5vw, 44px);
-      font-weight: 800;
-      line-height: 1.18;
-      margin-bottom: 12px;
-    }
+    .result-header h2 { font-family: 'Poppins', sans-serif; font-size: clamp(28px, 3.5vw, 44px); font-weight: 800; line-height: 1.18; margin-bottom: 12px; }
+    .result-header p  { font-size: 16px; color: var(--text-mid); line-height: 1.7; }
 
-    .result-header p {
-      font-size: 16px;
-      color: var(--text-mid);
-      line-height: 1.7;
-    }
-
-    /* Answer summary chips */
-    .answer-chips {
-      display: flex;
-      gap: 10px;
-      justify-content: center;
-      flex-wrap: wrap;
-      margin-bottom: 52px;
-    }
+    .answer-chips { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; margin-bottom: 52px; }
 
     .answer-chip {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      background: var(--white);
-      border: 1px solid rgba(0,0,0,0.08);
-      padding: 9px 18px;
-      border-radius: 100px;
-      font-size: 13px;
-      font-weight: 500;
-      color: var(--text-mid);
+      display: flex; align-items: center; gap: 8px;
+      background: var(--white); border: 1px solid rgba(0,0,0,0.08);
+      padding: 9px 18px; border-radius: 100px;
+      font-size: 13px; font-weight: 500; color: var(--text-mid);
       box-shadow: 0 2px 12px rgba(0,0,0,0.05);
     }
 
-    .chip-label {
-      font-size: 10.5px;
-      font-weight: 700;
-      letter-spacing: 0.8px;
-      text-transform: uppercase;
-      color: var(--text-soft);
-    }
+    .chip-label { font-size: 10.5px; font-weight: 700; letter-spacing: 0.8px; text-transform: uppercase; color: var(--text-soft); }
 
-    /* ─── RESULT CARD ─── */
-    .result-card-wrap {
-      display: grid;
-      grid-template-columns: 1fr 380px;
-      gap: 40px;
-      align-items: start;
-      margin-bottom: 48px;
-    }
+    .result-card-wrap { display: grid; grid-template-columns: 1fr 380px; gap: 40px; align-items: start; margin-bottom: 48px; }
 
-    .result-card {
-      background: var(--white);
-      border-radius: 28px;
-      padding: 40px;
-      box-shadow: 0 12px 52px rgba(0,0,0,0.09);
-      border-top: 4px solid var(--teal);
-    }
+    .result-card { background: var(--white); border-radius: 28px; padding: 40px; box-shadow: 0 12px 52px rgba(0,0,0,0.09); border-top: 4px solid var(--teal); }
 
-    .result-pill {
-      display: inline-block;
-      font-size: 11px;
-      font-weight: 700;
-      letter-spacing: 0.5px;
-      padding: 5px 14px;
-      border-radius: 100px;
-      margin-bottom: 14px;
-    }
+    .result-pill { display: inline-block; font-size: 11px; font-weight: 700; letter-spacing: 0.5px; padding: 5px 14px; border-radius: 100px; margin-bottom: 14px; }
+    .result-brand-name { font-family: 'Poppins', sans-serif; font-size: clamp(20px, 2.5vw, 28px); font-weight: 800; line-height: 1.2; margin-bottom: 16px; }
+    .result-desc { font-size: 15px; color: var(--text-mid); line-height: 1.75; margin-bottom: 28px; }
 
-    .result-brand-name {
-      font-family: 'Poppins', sans-serif;
-      font-size: clamp(20px, 2.5vw, 28px);
-      font-weight: 800;
-      line-height: 1.2;
-      margin-bottom: 16px;
-    }
+    .result-benefits { list-style: none; display: flex; flex-direction: column; gap: 11px; margin-bottom: 32px; }
+    .result-benefits li { display: flex; align-items: flex-start; gap: 11px; font-size: 14px; color: var(--text-mid); line-height: 1.55; }
 
-    .result-desc {
-      font-size: 15px;
-      color: var(--text-mid);
-      line-height: 1.75;
-      margin-bottom: 28px;
-    }
+    .benefit-check { width: 20px; height: 20px; background: var(--teal-light); border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 1px; }
+    .benefit-check svg { width: 10px; height: 10px; stroke: var(--teal-dark); stroke-width: 2.5; fill: none; }
 
-    .result-benefits {
-      list-style: none;
-      display: flex;
-      flex-direction: column;
-      gap: 11px;
-      margin-bottom: 32px;
-    }
-
-    .result-benefits li {
-      display: flex;
-      align-items: flex-start;
-      gap: 11px;
-      font-size: 14px;
-      color: var(--text-mid);
-      line-height: 1.55;
-    }
-
-    .benefit-check {
-      width: 20px; height: 20px;
-      background: var(--teal-light);
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-shrink: 0;
-      margin-top: 1px;
-    }
-
-    .benefit-check svg {
-      width: 10px; height: 10px;
-      stroke: var(--teal-dark);
-      stroke-width: 2.5;
-      fill: none;
-    }
-
-    .shape-note {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      background: var(--teal-light);
-      border-radius: 12px;
-      padding: 14px 18px;
-      font-size: 13.5px;
-      color: var(--teal-dark);
-      font-weight: 500;
-    }
-
+    .shape-note { display: flex; align-items: center; gap: 10px; background: var(--teal-light); border-radius: 12px; padding: 14px 18px; font-size: 13.5px; color: var(--teal-dark); font-weight: 500; }
     .shape-note-icon { font-size: 18px; }
 
-    .result-right {
-      position: sticky;
-      top: 92px;
-    }
+    .result-right { position: sticky; top: 92px; }
 
-    /* ─── ALSO CONSIDER ─── */
-    .also-consider {
-      background: var(--bg);
-      border: 1.5px solid rgba(0,0,0,0.06);
-      border-radius: 20px;
-      padding: 24px 26px;
-    }
+    .also-consider { background: var(--bg); border: 1.5px solid rgba(0,0,0,0.06); border-radius: 20px; padding: 24px 26px; }
+    .also-consider h4 { font-family: 'Poppins', sans-serif; font-size: 11px; font-weight: 700; color: var(--text-soft); letter-spacing: 0.5px; text-transform: uppercase; margin-bottom: 16px; }
 
-    .also-consider h4 {
-      font-family: 'Poppins', sans-serif;
-      font-size: 14px;
-      font-weight: 700;
-      color: var(--text-soft);
-      letter-spacing: 0.5px;
-      text-transform: uppercase;
-      font-size: 11px;
-      margin-bottom: 16px;
-    }
-
-    .alt-card {
-      background: var(--white);
-      border-radius: 14px;
-      padding: 18px;
-      display: flex;
-      gap: 14px;
-      align-items: flex-start;
-      box-shadow: 0 2px 12px rgba(0,0,0,0.05);
-      margin-bottom: 10px;
-      border: 1px solid rgba(0,0,0,0.05);
-    }
-
+    .alt-card { background: var(--white); border-radius: 14px; padding: 18px; display: flex; gap: 14px; align-items: flex-start; box-shadow: 0 2px 12px rgba(0,0,0,0.05); margin-bottom: 10px; border: 1px solid rgba(0,0,0,0.05); }
     .alt-card:last-child { margin-bottom: 0; }
+    .alt-pill { display: inline-block; font-size: 10px; font-weight: 700; padding: 3px 10px; border-radius: 100px; white-space: nowrap; flex-shrink: 0; margin-top: 2px; }
+    .alt-card h5 { font-family: 'Poppins', sans-serif; font-size: 13px; font-weight: 700; margin-bottom: 4px; }
+    .alt-card p  { font-size: 12px; color: var(--text-soft); line-height: 1.5; }
 
-    .alt-pill {
-      display: inline-block;
-      font-size: 10px;
-      font-weight: 700;
-      padding: 3px 10px;
-      border-radius: 100px;
-      white-space: nowrap;
-      flex-shrink: 0;
-      margin-top: 2px;
-    }
+    .result-cta-bar { display: flex; gap: 14px; align-items: center; flex-wrap: wrap; margin-bottom: 56px; }
 
-    .alt-card h5 {
-      font-family: 'Poppins', sans-serif;
-      font-size: 13px;
-      font-weight: 700;
-      margin-bottom: 4px;
-    }
+    .btn-book { display: inline-flex; align-items: center; gap: 10px; background: var(--teal); color: #fff; font-size: 15px; font-weight: 700; padding: 14px 34px; border-radius: 100px; text-decoration: none; box-shadow: 0 6px 24px rgba(0,184,186,0.30); transition: all 0.25s; }
+    .btn-book:hover { background: var(--teal-dark); transform: translateY(-2px); box-shadow: 0 10px 34px rgba(0,184,186,0.38); }
 
-    .alt-card p {
-      font-size: 12px;
-      color: var(--text-soft);
-      line-height: 1.5;
-    }
+    .btn-retake { display: inline-flex; align-items: center; gap: 8px; background: transparent; color: var(--text-mid); font-size: 14px; font-weight: 600; padding: 14px 24px; border-radius: 100px; text-decoration: none; border: 1.5px solid rgba(0,0,0,0.12); cursor: pointer; transition: all 0.25s; }
+    .btn-retake:hover { border-color: var(--teal); color: var(--teal); background: var(--teal-light); }
 
-    /* ─── RESULT CTA ─── */
-    .result-cta-bar {
-      display: flex;
-      gap: 14px;
-      align-items: center;
-      flex-wrap: wrap;
-      margin-bottom: 56px;
-    }
-
-    .btn-book {
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      background: var(--teal);
-      color: #fff;
-      font-family: 'Inter', sans-serif;
-      font-size: 15px;
-      font-weight: 700;
-      padding: 14px 34px;
-      border-radius: 100px;
-      text-decoration: none;
-      box-shadow: 0 6px 24px rgba(0,184,186,0.30);
-      transition: all 0.25s;
-    }
-
-    .btn-book:hover {
-      background: var(--teal-dark);
-      transform: translateY(-2px);
-      box-shadow: 0 10px 34px rgba(0,184,186,0.38);
-    }
-
-    .btn-retake {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      background: transparent;
-      color: var(--text-mid);
-      font-family: 'Inter', sans-serif;
-      font-size: 14px;
-      font-weight: 600;
-      padding: 14px 24px;
-      border-radius: 100px;
-      text-decoration: none;
-      border: 1.5px solid rgba(0,0,0,0.12);
-      cursor: pointer;
-      transition: all 0.25s;
-    }
-
-    .btn-retake:hover {
-      border-color: var(--teal);
-      color: var(--teal);
-      background: var(--teal-light);
-    }
-
-    /* ─── PILLS (shared) ─── */
+    /* ─── PILLS ─── */
     .p-teal     { background: var(--teal-light);     color: var(--teal-dark); }
     .p-lavender { background: var(--lavender-light); color: #5030B0; }
     .p-pink     { background: var(--pink-light);     color: #B83050; }
@@ -903,187 +537,48 @@
       overflow: hidden;
     }
 
-    .cta-section::before {
-      content: '';
-      position: absolute;
-      width: 360px; height: 360px;
-      border-radius: 50%;
-      background: rgba(255,255,255,0.055);
-      top: -100px; left: -80px;
-    }
+    .cta-section::before { content: ''; position: absolute; width: 360px; height: 360px; border-radius: 50%; background: rgba(255,255,255,0.055); top: -100px; left: -80px; }
+    .cta-section::after  { content: ''; position: absolute; width: 480px; height: 480px; border-radius: 50%; background: rgba(255,255,255,0.04); bottom: -140px; right: -80px; }
 
-    .cta-section::after {
-      content: '';
-      position: absolute;
-      width: 480px; height: 480px;
-      border-radius: 50%;
-      background: rgba(255,255,255,0.04);
-      bottom: -140px; right: -80px;
-    }
+    .cta-inner { position: relative; z-index: 2; max-width: 620px; margin: 0 auto; }
 
-    .cta-inner {
-      position: relative;
-      z-index: 2;
-      max-width: 620px;
-      margin: 0 auto;
-    }
+    .cta-badge-pill { display: inline-block; background: rgba(255,255,255,0.16); border: 1px solid rgba(255,255,255,0.28); color: #fff; font-size: 11.5px; font-weight: 600; letter-spacing: 1.5px; text-transform: uppercase; padding: 6px 18px; border-radius: 100px; margin-bottom: 24px; }
 
-    .cta-badge-pill {
-      display: inline-block;
-      background: rgba(255,255,255,0.16);
-      border: 1px solid rgba(255,255,255,0.28);
-      color: #fff;
-      font-size: 11.5px;
-      font-weight: 600;
-      letter-spacing: 1.5px;
-      text-transform: uppercase;
-      padding: 6px 18px;
-      border-radius: 100px;
-      margin-bottom: 24px;
-    }
+    .cta-inner h2 { font-family: 'Poppins', sans-serif; font-size: clamp(28px, 4vw, 44px); font-weight: 800; color: #fff; line-height: 1.18; margin-bottom: 16px; }
+    .cta-inner p  { color: rgba(255,255,255,0.78); font-size: 17px; line-height: 1.75; margin-bottom: 40px; }
 
-    .cta-inner h2 {
-      font-family: 'Poppins', sans-serif;
-      font-size: clamp(28px, 4vw, 44px);
-      font-weight: 800;
-      color: #fff;
-      line-height: 1.18;
-      margin-bottom: 16px;
-    }
+    .cta-btns { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; margin-bottom: 44px; }
 
-    .cta-inner p {
-      color: rgba(255,255,255,0.78);
-      font-size: 17px;
-      line-height: 1.75;
-      margin-bottom: 40px;
-    }
+    .btn-white { background: #fff; color: var(--teal-dark); font-size: 15px; font-weight: 700; padding: 14px 34px; border-radius: 100px; text-decoration: none; box-shadow: 0 8px 28px rgba(0,0,0,0.14); transition: transform 0.25s, box-shadow 0.25s; }
+    .btn-white:hover { transform: translateY(-2px); box-shadow: 0 12px 38px rgba(0,0,0,0.20); }
 
-    .cta-btns {
-      display: flex;
-      gap: 14px;
-      justify-content: center;
-      flex-wrap: wrap;
-      margin-bottom: 44px;
-    }
+    .btn-ghost { background: rgba(255,255,255,0.12); color: #fff; font-size: 15px; font-weight: 600; padding: 14px 34px; border-radius: 100px; text-decoration: none; border: 2px solid rgba(255,255,255,0.50); transition: background 0.25s, transform 0.25s; }
+    .btn-ghost:hover { background: rgba(255,255,255,0.22); transform: translateY(-2px); }
 
-    .btn-white {
-      background: #fff;
-      color: var(--teal-dark);
-      font-family: 'Inter', sans-serif;
-      font-size: 15px;
-      font-weight: 700;
-      padding: 14px 34px;
-      border-radius: 100px;
-      text-decoration: none;
-      box-shadow: 0 8px 28px rgba(0,0,0,0.14);
-      transition: transform 0.25s, box-shadow 0.25s;
-    }
-
-    .btn-white:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 12px 38px rgba(0,0,0,0.20);
-    }
-
-    .btn-ghost {
-      background: rgba(255,255,255,0.12);
-      color: #fff;
-      font-family: 'Inter', sans-serif;
-      font-size: 15px;
-      font-weight: 600;
-      padding: 14px 34px;
-      border-radius: 100px;
-      text-decoration: none;
-      border: 2px solid rgba(255,255,255,0.50);
-      transition: background 0.25s, transform 0.25s;
-    }
-
-    .btn-ghost:hover {
-      background: rgba(255,255,255,0.22);
-      transform: translateY(-2px);
-    }
-
-    .cta-contacts {
-      display: flex;
-      gap: 28px;
-      justify-content: center;
-      flex-wrap: wrap;
-    }
-
-    .cta-contact-item {
-      display: flex;
-      align-items: center;
-      gap: 9px;
-      color: rgba(255,255,255,0.78);
-      font-size: 13.5px;
-      font-weight: 500;
-    }
-
-    .contact-icon-box {
-      width: 34px; height: 34px;
-      background: rgba(255,255,255,0.14);
-      border-radius: 9px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 14px;
-    }
+    .cta-contacts { display: flex; gap: 28px; justify-content: center; flex-wrap: wrap; }
+    .cta-contact-item { display: flex; align-items: center; gap: 9px; color: rgba(255,255,255,0.78); font-size: 13.5px; font-weight: 500; }
+    .contact-icon-box { width: 34px; height: 34px; background: rgba(255,255,255,0.14); border-radius: 9px; display: flex; align-items: center; justify-content: center; font-size: 14px; }
 
     /* ─── FOOTER ─── */
-    footer {
-      background: #0D0D1A;
-      padding: 40px 52px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      flex-wrap: wrap;
-      gap: 20px;
-    }
-
-    .footer-logo img {
-      height: 26px;
-      filter: brightness(0) invert(1);
-      opacity: 0.65;
-    }
-
-    .footer-copy {
-      color: rgba(255,255,255,0.30);
-      font-size: 12.5px;
-    }
-
-    .footer-nav {
-      display: flex;
-      gap: 10px;
-    }
-
-    .footer-chip {
-      background: rgba(255,255,255,0.07);
-      color: rgba(255,255,255,0.45);
-      font-size: 12px;
-      font-weight: 500;
-      padding: 6px 14px;
-      border-radius: 100px;
-      text-decoration: none;
-      transition: background 0.2s, color 0.2s;
-    }
-
-    .footer-chip:hover {
-      background: rgba(0,184,186,0.20);
-      color: var(--teal);
-    }
+    footer { background: #0D0D1A; padding: 40px 52px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 20px; }
+    .footer-logo img { height: 26px; filter: brightness(0) invert(1); opacity: 0.65; }
+    .footer-copy { color: rgba(255,255,255,0.30); font-size: 12.5px; }
+    .footer-nav { display: flex; gap: 10px; }
+    .footer-chip { background: rgba(255,255,255,0.07); color: rgba(255,255,255,0.45); font-size: 12px; font-weight: 500; padding: 6px 14px; border-radius: 100px; text-decoration: none; transition: background 0.2s, color 0.2s; }
+    .footer-chip:hover { background: rgba(0,184,186,0.20); color: var(--teal); }
 
     /* ─── RESPONSIVE ─── */
     @media (max-width: 960px) {
       nav { padding: 0 24px; }
       .quiz-section { padding: 60px 24px 80px; }
-      .cta-section { padding: 80px 24px; }
+      .cta-section  { padding: 80px 24px; }
       footer { padding: 36px 24px; flex-direction: column; text-align: center; align-items: center; }
-
       .quiz-step { grid-template-columns: 1fr !important; }
       .quiz-right { position: static; margin-top: 32px; }
       .result-card-wrap { grid-template-columns: 1fr; }
       .result-right { position: static; }
-
       .options-grid.cols-3 { grid-template-columns: 1fr; }
+      .nav-link.nav-guide-link { display: none; }
     }
 
     @media (max-width: 600px) {
@@ -1103,8 +598,13 @@
     <img src="images/company-logo.png" alt="Wansiri Hospital">
   </a>
   <div class="nav-right">
-    <a href="index.html" class="nav-link">Full Guide</a>
-    <a href="tel:022498855" class="nav-cta">Book Consultation</a>
+    <a href="index.html" class="nav-link nav-guide-link" data-i18n="nav_guide">Full Guide</a>
+    <a href="products.html" class="nav-link" data-i18n="nav_products">All Products</a>
+    <div class="lang-toggle">
+      <button class="lang-btn active" id="btn-en" onclick="setLang('en')">EN</button>
+      <button class="lang-btn"        id="btn-th" onclick="setLang('th')">TH</button>
+    </div>
+    <a href="tel:022498855" class="nav-cta" data-i18n="nav_cta">Book Consultation</a>
   </div>
 </nav>
 
@@ -1116,34 +616,33 @@
   <div class="hero-content">
     <div class="hero-pill">
       <span class="hero-dot"></span>
-      3-Question Match · Wansiri Hospital
+      <span data-i18n="hero_pill">3-Question Match · Wansiri Hospital</span>
     </div>
 
     <h1>
-      Not Sure<br>
-      <span class="gt">Where to Start?</span>
+      <span data-i18n="hero_h1_1">Not Sure</span><br>
+      <span class="gt" data-i18n="hero_h1_2">Where to Start?</span>
     </h1>
 
-    <p class="hero-sub">
-      Answer 3 quick questions and we'll match you with the right
-      breast implant for your body, goals, and lifestyle.
+    <p class="hero-sub" data-i18n="hero_sub">
+      Answer 3 quick questions and we'll match you with the right breast implant for your body, goals, and lifestyle.
     </p>
 
     <div class="hero-stats">
-      <div class="hero-stat">3 questions</div>
-      <div class="hero-stat">5 implant options</div>
-      <div class="hero-stat">Personalized match</div>
+      <div class="hero-stat" data-i18n="hero_stat1">3 questions</div>
+      <div class="hero-stat" data-i18n="hero_stat2">5 implant options</div>
+      <div class="hero-stat" data-i18n="hero_stat3">Personalized match</div>
     </div>
 
     <a href="#quiz" class="btn-start">
-      Take the Quiz
+      <span data-i18n="hero_btn">Take the Quiz</span>
       <span class="arrow">→</span>
     </a>
   </div>
 
   <div class="hero-scroll">
     <div class="scroll-bar"></div>
-    start
+    <span data-i18n="hero_scroll">start</span>
   </div>
 </section>
 
@@ -1163,10 +662,10 @@
         <div class="step-marker" id="sm4">✓</div>
       </div>
       <div class="step-labels">
-        <span id="sl1" class="active-label">Your Look</span>
-        <span id="sl2">Your Priority</span>
-        <span id="sl3">Your Lifestyle</span>
-        <span id="sl4">Your Match</span>
+        <span id="sl1" class="active-label" data-i18n="sl1">Your Look</span>
+        <span id="sl2" data-i18n="sl2">Your Priority</span>
+        <span id="sl3" data-i18n="sl3">Your Lifestyle</span>
+        <span id="sl4" data-i18n="sl4">Your Match</span>
       </div>
     </div>
 
@@ -1176,32 +675,32 @@
       <!-- ── STEP 1: SHAPE ── -->
       <div class="quiz-step step-1 active" id="step1">
         <div class="quiz-left">
-          <div class="step-badge">Question 1 of 3</div>
-          <h2 class="quiz-q">What's your ideal look?</h2>
-          <p class="quiz-hint">Pick the silhouette that matches what you have in mind.</p>
+          <div class="step-badge" data-i18n="s1_badge">Question 1 of 3</div>
+          <h2 class="quiz-q" data-i18n="s1_q">What's your ideal look?</h2>
+          <p class="quiz-hint" data-i18n="s1_hint">Pick the silhouette that matches what you have in mind.</p>
 
           <div class="options-grid cols-2">
             <div class="option-card" data-key="shape" data-value="round" onclick="selectOption(this)">
               <div class="option-check">✓</div>
               <div class="option-emoji">○</div>
-              <div class="option-title">Fuller &amp; Defined</div>
-              <div class="option-desc">More volume on top, enhanced cleavage, a clearly defined shape.</div>
+              <div class="option-title" data-i18n="s1_opt1_title">Fuller &amp; Defined</div>
+              <div class="option-desc" data-i18n="s1_opt1_desc">More volume on top, enhanced cleavage, a clearly defined shape.</div>
             </div>
             <div class="option-card" data-key="shape" data-value="teardrop" onclick="selectOption(this)">
               <div class="option-check">✓</div>
               <div class="option-emoji">◇</div>
-              <div class="option-title">Natural &amp; Lifted</div>
-              <div class="option-desc">Softer result that mimics natural breast anatomy — subtle but beautiful.</div>
+              <div class="option-title" data-i18n="s1_opt2_title">Natural &amp; Lifted</div>
+              <div class="option-desc" data-i18n="s1_opt2_desc">Softer result that mimics natural breast anatomy — subtle but beautiful.</div>
             </div>
           </div>
 
           <button class="next-btn" id="next1" onclick="goToStep(2)">
-            Next <span class="btn-arrow">→</span>
+            <span data-i18n="next">Next</span> <span class="btn-arrow">→</span>
           </button>
         </div>
 
         <div class="quiz-right">
-          <div class="ref-label">Reference Guide</div>
+          <div class="ref-label" data-i18n="ref_label">Reference Guide</div>
           <div class="infographic-frame">
             <img src="images/S__5349457.jpg" alt="Implant Shape Guide">
           </div>
@@ -1211,38 +710,38 @@
       <!-- ── STEP 2: SURFACE ── -->
       <div class="quiz-step step-2" id="step2">
         <div class="quiz-left">
-          <div class="step-badge">Question 2 of 3</div>
-          <h2 class="quiz-q">What matters most to you in an implant?</h2>
-          <p class="quiz-hint">Think about what gives you the most confidence and peace of mind.</p>
+          <div class="step-badge" data-i18n="s2_badge">Question 2 of 3</div>
+          <h2 class="quiz-q" data-i18n="s2_q">What matters most to you in an implant?</h2>
+          <p class="quiz-hint" data-i18n="s2_hint">Think about what gives you the most confidence and peace of mind.</p>
 
           <div class="options-grid cols-3">
             <div class="option-card" data-key="surface" data-value="smooth" onclick="selectOption(this)">
               <div class="option-check">✓</div>
               <div class="option-emoji">◎</div>
-              <div class="option-title">Classic &amp; Proven</div>
-              <div class="option-desc">Time-tested smooth surface with decades of clinical history.</div>
+              <div class="option-title" data-i18n="s2_opt1_title">Classic &amp; Proven</div>
+              <div class="option-desc" data-i18n="s2_opt1_desc">Time-tested smooth surface with decades of clinical history.</div>
             </div>
             <div class="option-card" data-key="surface" data-value="textured" onclick="selectOption(this)">
               <div class="option-check">✓</div>
               <div class="option-emoji">⬡</div>
-              <div class="option-title">Stable &amp; Secure</div>
-              <div class="option-desc">Textured surface that keeps the implant precisely in position.</div>
+              <div class="option-title" data-i18n="s2_opt2_title">Stable &amp; Secure</div>
+              <div class="option-desc" data-i18n="s2_opt2_desc">Textured surface that keeps the implant precisely in position.</div>
             </div>
             <div class="option-card" data-key="surface" data-value="nano" onclick="selectOption(this)">
               <div class="option-check">✓</div>
               <div class="option-emoji">✦</div>
-              <div class="option-title">Advanced Science</div>
-              <div class="option-desc">Nano-engineered surface for minimized health risks and a natural feel.</div>
+              <div class="option-title" data-i18n="s2_opt3_title">Advanced Science</div>
+              <div class="option-desc" data-i18n="s2_opt3_desc">Nano-engineered surface for minimized health risks and a natural feel.</div>
             </div>
           </div>
 
           <button class="next-btn" id="next2" onclick="goToStep(3)">
-            Next <span class="btn-arrow">→</span>
+            <span data-i18n="next">Next</span> <span class="btn-arrow">→</span>
           </button>
         </div>
 
         <div class="quiz-right">
-          <div class="ref-label">Reference Guide</div>
+          <div class="ref-label" data-i18n="ref_label">Reference Guide</div>
           <div class="infographic-frame">
             <img src="images/S__5349458.jpg" alt="Implant Surface Guide">
           </div>
@@ -1252,44 +751,44 @@
       <!-- ── STEP 3: LIFESTYLE ── -->
       <div class="quiz-step step-3" id="step3">
         <div class="quiz-left">
-          <div class="step-badge">Question 3 of 3</div>
-          <h2 class="quiz-q">Which describes you best?</h2>
-          <p class="quiz-hint">This helps us match you with the implant that fits your life.</p>
+          <div class="step-badge" data-i18n="s3_badge">Question 3 of 3</div>
+          <h2 class="quiz-q" data-i18n="s3_q">Which describes you best?</h2>
+          <p class="quiz-hint" data-i18n="s3_hint">This helps us match you with the implant that fits your life.</p>
 
           <div class="options-grid cols-2">
             <div class="option-card" data-key="lifestyle" data-value="active" onclick="selectOption(this)">
               <div class="option-check">✓</div>
               <div class="option-emoji">🏃</div>
-              <div class="option-title">Always Active</div>
-              <div class="option-desc">Gym, yoga, sports — I want something that moves naturally with me.</div>
+              <div class="option-title" data-i18n="s3_opt1_title">Always Active</div>
+              <div class="option-desc" data-i18n="s3_opt1_desc">Gym, yoga, sports — I want something that moves naturally with me.</div>
             </div>
             <div class="option-card" data-key="lifestyle" data-value="projected" onclick="selectOption(this)">
               <div class="option-check">✓</div>
               <div class="option-emoji">✨</div>
-              <div class="option-title">I Want It Noticeable</div>
-              <div class="option-desc">I want volume, projection, and cleavage that makes a statement.</div>
+              <div class="option-title" data-i18n="s3_opt2_title">I Want It Noticeable</div>
+              <div class="option-desc" data-i18n="s3_opt2_desc">I want volume, projection, and cleavage that makes a statement.</div>
             </div>
             <div class="option-card" data-key="lifestyle" data-value="natural" onclick="selectOption(this)">
               <div class="option-check">✓</div>
               <div class="option-emoji">🌿</div>
-              <div class="option-title">Natural Above All</div>
-              <div class="option-desc">Subtle enhancement that looks like it was always part of me.</div>
+              <div class="option-title" data-i18n="s3_opt3_title">Natural Above All</div>
+              <div class="option-desc" data-i18n="s3_opt3_desc">Subtle enhancement that looks like it was always part of me.</div>
             </div>
             <div class="option-card" data-key="lifestyle" data-value="safety" onclick="selectOption(this)">
               <div class="option-check">✓</div>
               <div class="option-emoji">🛡</div>
-              <div class="option-title">Safety First</div>
-              <div class="option-desc">I prioritize certifications, clinical records, and long-term health.</div>
+              <div class="option-title" data-i18n="s3_opt4_title">Safety First</div>
+              <div class="option-desc" data-i18n="s3_opt4_desc">I prioritize certifications, clinical records, and long-term health.</div>
             </div>
           </div>
 
           <button class="next-btn" id="next3" onclick="showResult()">
-            See My Match <span class="btn-arrow">→</span>
+            <span data-i18n="see_match">See My Match</span> <span class="btn-arrow">→</span>
           </button>
         </div>
 
         <div class="quiz-right">
-          <div class="ref-label">Reference Guide</div>
+          <div class="ref-label" data-i18n="ref_label">Reference Guide</div>
           <div class="infographic-frame">
             <img src="images/S__5349459.jpg" alt="Implant Brands Guide">
           </div>
@@ -1308,20 +807,23 @@
 <!-- ═══ CTA ═══ -->
 <section class="cta-section">
   <div class="cta-inner">
-    <div class="cta-badge-pill">Free Consultation Available</div>
-    <h2>Ready to Take<br>the First Step?</h2>
-    <p>
+    <div class="cta-badge-pill" data-i18n="cta_pill">Free Consultation Available</div>
+    <h2>
+      <span data-i18n="cta_h2_1">Ready to Take</span><br>
+      <span data-i18n="cta_h2_2">the First Step?</span>
+    </h2>
+    <p data-i18n="cta_p">
       Our team is here to walk you through your options, answer every question,
       and help you find the right implant for your body and lifestyle. No pressure.
     </p>
     <div class="cta-btns">
-      <a href="tel:022498855" class="btn-white">Call 02-249-8855</a>
-      <a href="https://www.wansirihospital.com/en/" class="btn-ghost">Visit Our Website</a>
+      <a href="tel:022498855" class="btn-white" data-i18n="cta_call">Call 02-249-8855</a>
+      <a href="https://www.wansirihospital.com/en/" class="btn-ghost" data-i18n="cta_web">Visit Our Website</a>
     </div>
     <div class="cta-contacts">
       <div class="cta-contact-item">
         <div class="contact-icon-box">📘</div>
-        Wansiri Aesthetic Hospital
+        <span data-i18n="cta_fb">Wansiri Hospital</span>
       </div>
       <div class="cta-contact-item">
         <div class="contact-icon-box">📷</div>
@@ -1340,155 +842,246 @@
   <div class="footer-logo">
     <img src="images/company-logo.png" alt="Wansiri Hospital">
   </div>
-  <p class="footer-copy">© 2026 Wansiri Hospital · All rights reserved.</p>
+  <p class="footer-copy" data-i18n="footer_copy">© 2026 Wansiri Hospital · All rights reserved.</p>
   <div class="footer-nav">
-    <a href="index.html" class="footer-chip">Full Guide</a>
-    <a href="#" class="footer-chip">Facebook</a>
-    <a href="#" class="footer-chip">Instagram</a>
-    <a href="#" class="footer-chip">LINE</a>
+    <a href="index.html"    class="footer-chip" data-i18n="footer_guide">Full Guide</a>
+    <a href="products.html" class="footer-chip" data-i18n="footer_products">All Products</a>
+    <a href="#"             class="footer-chip">Facebook</a>
+    <a href="#"             class="footer-chip">Instagram</a>
+    <a href="#"             class="footer-chip">LINE</a>
   </div>
 </footer>
 
 <script>
-  /* ─── STATE ─── */
-  const answers = { shape: null, surface: null, lifestyle: null };
+  /* ─── LANGUAGE ─── */
+  let currentLang = 'en';
 
-  /* ─── RECOMMENDATION DATA ─── */
-  const recs = {
-    active: {
-      brand:      'Motiva® Ergonomix',
-      pill:       'MOTIVA®',
-      pillClass:  'p-mint',
-      borderColor:'var(--mint)',
-      desc:       'Designed to adapt naturally to your body movement, this implant shifts between round and teardrop appearance depending on your position — giving you the most natural, dynamic result for an active lifestyle.',
-      benefits: [
-        'Shifts naturally between round and teardrop shape',
-        'High-density gel with 12 mm projection orientation',
-        'Orientation markers assist precise surgical placement',
-        'Each implant serialized for full long-term traceability',
-        'No reported links to BIA-lymphoma (BIA-ALCL)'
-      ],
-      shapeNote:  'Works beautifully in both Round and Teardrop — your Q1 choice still applies',
-      infographic: 'images/S__5349459.jpg',
-      alts: ['projected', 'natural']
+  const translations = {
+    en: {
+      nav_guide: 'Full Guide', nav_products: 'All Products', nav_cta: 'Book Consultation',
+      hero_pill: '3-Question Match · Wansiri Hospital',
+      hero_h1_1: 'Not Sure', hero_h1_2: 'Where to Start?',
+      hero_sub: "Answer 3 quick questions and we'll match you with the right breast implant for your body, goals, and lifestyle.",
+      hero_stat1: '3 questions', hero_stat2: '5 implant options', hero_stat3: 'Personalized match',
+      hero_btn: 'Take the Quiz', hero_scroll: 'start',
+      sl1: 'Your Look', sl2: 'Your Priority', sl3: 'Your Lifestyle', sl4: 'Your Match',
+      s1_badge: 'Question 1 of 3', s1_q: "What's your ideal look?",
+      s1_hint: 'Pick the silhouette that matches what you have in mind.',
+      s1_opt1_title: 'Fuller & Defined', s1_opt1_desc: 'More volume on top, enhanced cleavage, a clearly defined shape.',
+      s1_opt2_title: 'Natural & Lifted', s1_opt2_desc: 'Softer result that mimics natural breast anatomy — subtle but beautiful.',
+      next: 'Next', ref_label: 'Reference Guide',
+      s2_badge: 'Question 2 of 3', s2_q: 'What matters most to you in an implant?',
+      s2_hint: 'Think about what gives you the most confidence and peace of mind.',
+      s2_opt1_title: 'Classic & Proven', s2_opt1_desc: 'Time-tested smooth surface with decades of clinical history.',
+      s2_opt2_title: 'Stable & Secure',  s2_opt2_desc: 'Textured surface that keeps the implant precisely in position.',
+      s2_opt3_title: 'Advanced Science', s2_opt3_desc: 'Nano-engineered surface for minimized health risks and a natural feel.',
+      s3_badge: 'Question 3 of 3', s3_q: 'Which describes you best?',
+      s3_hint: "This helps us match you with the implant that fits your life.",
+      s3_opt1_title: 'Always Active',        s3_opt1_desc: 'Gym, yoga, sports — I want something that moves naturally with me.',
+      s3_opt2_title: 'I Want It Noticeable', s3_opt2_desc: 'I want volume, projection, and cleavage that makes a statement.',
+      s3_opt3_title: 'Natural Above All',    s3_opt3_desc: 'Subtle enhancement that looks like it was always part of me.',
+      s3_opt4_title: 'Safety First',         s3_opt4_desc: 'I prioritize certifications, clinical records, and long-term health.',
+      see_match: 'See My Match',
+      result_badge: '🎉 Your Personalized Match', result_h2: 'We Found Your Fit',
+      result_p: "Based on your answers, here's what we recommend for you.",
+      chip_look: 'Look', chip_priority: 'Priority', chip_lifestyle: 'Lifestyle',
+      book_cta: 'Book a Consultation', retake: '↺ Retake Quiz',
+      result_ref: 'Reference Guide', also_consider: 'Also Consider',
+      shape_labels:   { round: 'Round — Fuller & Defined', teardrop: 'Teardrop — Natural & Lifted' },
+      surface_labels: { smooth: 'Smooth — Classic & Proven', textured: 'Textured — Stable & Secure', nano: 'Nano — Advanced Science' },
+      life_labels:    { active: 'Always Active', projected: 'Noticeable Result', natural: 'Natural Above All', safety: 'Safety First' },
+      cta_pill: 'Free Consultation Available', cta_h2_1: 'Ready to Take', cta_h2_2: 'the First Step?',
+      cta_p: 'Our team is here to walk you through your options, answer every question, and help you find the right implant for your body and lifestyle. No pressure.',
+      cta_call: 'Call 02-249-8855', cta_web: 'Visit Our Website', cta_fb: 'Wansiri Hospital',
+      footer_copy: '© 2026 Wansiri Hospital · All rights reserved.',
+      footer_guide: 'Full Guide', footer_products: 'All Products',
     },
-    projected: {
-      brand:      'MENTOR® MemoryGel® Xtra',
-      pill:       'MENTOR®',
-      pillClass:  'p-teal',
-      borderColor:'var(--teal)',
-      desc:       'Built for maximum fullness and projection. MemoryGel Xtra uses a next-generation cohesive gel formula that delivers the fullest, most defined result while staying soft and natural to the touch.',
-      benefits: [
-        '99% more cohesive gel vs. previous MENTOR generation',
-        'Up to 6× more elasticity — significantly reduces rippling',
-        '35% thinner implant shell for a more natural feel',
-        'Enhances cleavage and upper breast volume noticeably',
-        'A long global track record of surgeon trust'
-      ],
-      shapeNote:  'Most effective paired with Round shape for maximum projection',
-      infographic: 'images/S__5349459.jpg',
-      alts: ['active', 'natural']
-    },
-    natural: {
-      brand:      'Motiva® Silk Surface Plus',
-      pill:       'MOTIVA®',
-      pillClass:  'p-pink',
-      borderColor:'var(--pink)',
-      desc:       'Designed to emphasize upper breast fullness with a youthful, natural look. The slightly rounder contour gives gentle projection — subtle enhancement that looks effortlessly real.',
-      benefits: [
-        'Gentle projection — subtle and naturally-looking result',
-        'Slightly rounder contour, not a pronounced teardrop',
-        'Emphasizes upper breast fullness for a youthful feel',
-        'Nano surface option reduces capsular contracture risk',
-        'Developed to complement, not overpower, natural anatomy'
-      ],
-      shapeNote:  'Works especially well with Teardrop shape for the most natural finish',
-      infographic: 'images/S__5349459.jpg',
-      alts: ['active', 'safety']
-    },
-    safety: {
-      brand:      'Motiva® Implants',
-      pill:       'MOTIVA®',
-      pillClass:  'p-lavender',
-      borderColor:'var(--lavender)',
-      desc:       'A new generation of breast implants built with your long-term health as the first priority. No reported links to BIA-lymphoma, reduced contracture risk, and a highly elastic gel engineered for lasting safety.',
-      benefits: [
-        'No reports linking to BIA-lymphoma (BIA-ALCL)',
-        'Highly elastic gel withstands up to 270% compression',
-        'Surface texture reduces formation of capsular contracture',
-        'Developed under the latest U.S. clinical standards',
-        'Available in Smooth, Textured, and Nano surface options'
-      ],
-      shapeNote:  'Available in both Round and Teardrop — compatible with your Q1 choice',
-      infographic: 'images/S__5349459.jpg',
-      alts: ['natural', 'active']
+    th: {
+      nav_guide: 'คู่มือฉบับเต็ม', nav_products: 'ผลิตภัณฑ์ทั้งหมด', nav_cta: 'นัดปรึกษาแพทย์',
+      hero_pill: '3 คำถาม · โรงพยาบาลวรรณสิริ',
+      hero_h1_1: 'ยังไม่แน่ใจ', hero_h1_2: 'จะเริ่มจากตรงไหน?',
+      hero_sub: 'ตอบ 3 คำถามง่ายๆ แล้วเราจะแนะนำเต้านมเทียมที่เหมาะกับสรีระ เป้าหมาย และไลฟ์สไตล์ของคุณ',
+      hero_stat1: '3 คำถาม', hero_stat2: '5 ตัวเลือก', hero_stat3: 'ผลลัพธ์เฉพาะคุณ',
+      hero_btn: 'เริ่มทำแบบทดสอบ', hero_scroll: 'เริ่ม',
+      sl1: 'รูปทรง', sl2: 'ลำดับความสำคัญ', sl3: 'ไลฟ์สไตล์', sl4: 'ผลลัพธ์',
+      s1_badge: 'คำถามที่ 1 จาก 3', s1_q: 'คุณต้องการรูปทรงแบบไหน?',
+      s1_hint: 'เลือกรูปร่างที่ตรงกับสิ่งที่คุณมีในใจ',
+      s1_opt1_title: 'อวบอิ่ม โดดเด่น', s1_opt1_desc: 'ปริมาณมากด้านบน รอยแตกชัดเจน รูปทรงที่โดดเด่นเต็มที่',
+      s1_opt2_title: 'ธรรมชาติ ยกกระชับ', s1_opt2_desc: 'ผลลัพธ์นุ่มนวล เลียนแบบกายวิภาคธรรมชาติ แนบเนียนแต่สวยงาม',
+      next: 'ถัดไป', ref_label: 'คู่มืออ้างอิง',
+      s2_badge: 'คำถามที่ 2 จาก 3', s2_q: 'คุณให้ความสำคัญกับอะไรมากที่สุด?',
+      s2_hint: 'ลองนึกถึงสิ่งที่ทำให้คุณมั่นใจและสบายใจที่สุด',
+      s2_opt1_title: 'คลาสสิก ผ่านการพิสูจน์', s2_opt1_desc: 'ผิวเรียบที่ผ่านการใช้งานในวงการแพทย์มาหลายสิบปี',
+      s2_opt2_title: 'มั่นคง ไม่เคลื่อน',         s2_opt2_desc: 'ผิวขรุขระช่วยยึดเต้านมเทียมให้คงตำแหน่งได้แม่นยำ',
+      s2_opt3_title: 'นวัตกรรมล้ำสมัย',           s2_opt3_desc: 'ผิว Nano ออกแบบมาเพื่อลดความเสี่ยงต่อสุขภาพและให้ความรู้สึกเป็นธรรมชาติ',
+      s3_badge: 'คำถามที่ 3 จาก 3', s3_q: 'ข้อไหนที่อธิบายตัวคุณได้ดีที่สุด?',
+      s3_hint: 'คำตอบนี้จะช่วยแนะนำเต้านมเทียมที่เข้ากับชีวิตของคุณ',
+      s3_opt1_title: 'ออกกำลังกายสม่ำเสมอ',       s3_opt1_desc: 'ฟิตเนส โยคะ กีฬา ต้องการสิ่งที่เคลื่อนไหวตามธรรมชาติไปกับร่างกาย',
+      s3_opt2_title: 'ต้องการให้โดดเด่น',           s3_opt2_desc: 'ต้องการความอวบอิ่ม ยื่นออก และหน้าอกที่มีเสน่ห์โดดเด่น',
+      s3_opt3_title: 'ธรรมชาติเป็นหลัก',            s3_opt3_desc: 'การเสริมที่แนบเนียน ดูเหมือนเป็นส่วนหนึ่งของร่างกายมาตลอด',
+      s3_opt4_title: 'ความปลอดภัยเป็นอันดับแรก',   s3_opt4_desc: 'ให้ความสำคัญกับการรับรอง ประวัติทางคลินิก และสุขภาพระยะยาว',
+      see_match: 'ดูผลลัพธ์ของฉัน',
+      result_badge: '🎉 ผลลัพธ์เฉพาะคุณ', result_h2: 'เราพบสิ่งที่ใช่สำหรับคุณ',
+      result_p: 'จากคำตอบของคุณ นี่คือสิ่งที่เราแนะนำ',
+      chip_look: 'รูปทรง', chip_priority: 'ลำดับความสำคัญ', chip_lifestyle: 'ไลฟ์สไตล์',
+      book_cta: 'นัดปรึกษาแพทย์', retake: '↺ ทำแบบทดสอบใหม่',
+      result_ref: 'คู่มืออ้างอิง', also_consider: 'ตัวเลือกอื่นที่น่าสนใจ',
+      shape_labels:   { round: 'ทรงกลม — อวบอิ่ม โดดเด่น', teardrop: 'ทรงหยดน้ำ — ธรรมชาติ ยกกระชับ' },
+      surface_labels: { smooth: 'เรียบ — คลาสสิก ผ่านการพิสูจน์', textured: 'ขรุขระ — มั่นคง ไม่เคลื่อน', nano: 'นาโน — นวัตกรรมล้ำสมัย' },
+      life_labels:    { active: 'ออกกำลังกายสม่ำเสมอ', projected: 'ต้องการให้โดดเด่น', natural: 'ธรรมชาติเป็นหลัก', safety: 'ความปลอดภัยเป็นอันดับแรก' },
+      cta_pill: 'ปรึกษาฟรี ไม่มีค่าใช้จ่าย', cta_h2_1: 'พร้อมก้าวแรก', cta_h2_2: 'สู่ความมั่นใจ?',
+      cta_p: 'ทีมของเราพร้อมอธิบายตัวเลือกทั้งหมด ตอบทุกคำถาม และช่วยคุณค้นหาเต้านมเทียมที่เหมาะกับสรีระและไลฟ์สไตล์ของคุณ ไม่มีแรงกดดัน',
+      cta_call: 'โทร 02-249-8855', cta_web: 'เยี่ยมชมเว็บไซต์', cta_fb: 'โรงพยาบาลวรรณสิริ',
+      footer_copy: '© 2026 โรงพยาบาลวรรณสิริ · สงวนลิขสิทธิ์',
+      footer_guide: 'คู่มือฉบับเต็ม', footer_products: 'ผลิตภัณฑ์',
     }
   };
 
-  /* Override for smooth + safety → MENTOR Saline */
+  function t(key) { return translations[currentLang][key] || translations['en'][key] || key; }
+
+  function setLang(lang) {
+    currentLang = lang;
+    document.documentElement.lang = lang;
+    document.body.classList.toggle('lang-th', lang === 'th');
+
+    document.getElementById('btn-en').classList.toggle('active', lang === 'en');
+    document.getElementById('btn-th').classList.toggle('active', lang === 'th');
+
+    document.querySelectorAll('[data-i18n]').forEach(el => {
+      const key = el.getAttribute('data-i18n');
+      const val = t(key);
+      if (val !== undefined) el.textContent = val;
+    });
+
+    document.title = lang === 'th'
+      ? 'ค้นหาเต้านมเทียมที่ใช่สำหรับคุณ — โรงพยาบาลวรรณสิริ'
+      : 'Find Your Implant Match — Wansiri Hospital';
+
+    /* Re-render result if visible */
+    const resultEl = document.getElementById('stepResult');
+    if (resultEl && resultEl.classList.contains('active') && answers.lifestyle) {
+      showResult(true);
+    }
+  }
+
+  /* ─── STATE ─── */
+  const answers = { shape: null, surface: null, lifestyle: null };
+
+  /* ─── RECOMMENDATION DATA (bilingual) ─── */
+  const recs = {
+    active: {
+      brand: 'Motiva® Ergonomix',
+      pill: 'MOTIVA®', pillClass: 'p-mint', borderColor: 'var(--mint)',
+      infographic: 'images/S__5349459.jpg',
+      alts: ['projected', 'natural'],
+      en: {
+        desc: 'Designed to adapt naturally to your body movement, this implant shifts between round and teardrop appearance depending on your position — giving you the most natural, dynamic result for an active lifestyle.',
+        benefits: ['Shifts naturally between round and teardrop shape','High-density gel with 12 mm projection orientation','Orientation markers assist precise surgical placement','Each implant serialized for full long-term traceability','No reported links to BIA-lymphoma (BIA-ALCL)'],
+        shapeNote: 'Works beautifully in both Round and Teardrop — your Q1 choice still applies'
+      },
+      th: {
+        desc: 'ออกแบบให้ปรับรูปทรงตามการเคลื่อนไหวของร่างกาย สลับระหว่างทรงกลมและหยดน้ำตามท่าทาง ให้ผลลัพธ์ที่เป็นธรรมชาติและมีชีวิตชีวาที่สุดสำหรับคนที่ชอบออกกำลังกาย',
+        benefits: ['สลับรูปทรงระหว่างกลมและหยดน้ำตามธรรมชาติ','เจลความหนาแน่นสูง ยื่นออก 12 มม.','มีเครื่องหมายบอกทิศทางช่วยให้ผ่าตัดได้แม่นยำ','แต่ละชิ้นมีหมายเลขซีเรียลสำหรับติดตามตลอดอายุการใช้งาน','ไม่มีรายงานเชื่อมโยงกับโรค BIA-ALCL'],
+        shapeNote: 'เหมาะกับทั้งทรงกลมและหยดน้ำ — ตัวเลือกในคำถามที่ 1 ยังคงใช้ได้'
+      }
+    },
+    projected: {
+      brand: 'MENTOR® MemoryGel® Xtra',
+      pill: 'MENTOR®', pillClass: 'p-teal', borderColor: 'var(--teal)',
+      infographic: 'images/S__5349459.jpg',
+      alts: ['active', 'natural'],
+      en: {
+        desc: 'Built for maximum fullness and projection. MemoryGel Xtra uses a next-generation cohesive gel formula that delivers the fullest, most defined result while staying soft and natural to the touch.',
+        benefits: ['99% more cohesive gel vs. previous MENTOR generation','Up to 6× more elasticity — significantly reduces rippling','35% thinner implant shell for a more natural feel','Enhances cleavage and upper breast volume noticeably','A long global track record of surgeon trust'],
+        shapeNote: 'Most effective paired with Round shape for maximum projection'
+      },
+      th: {
+        desc: 'สร้างมาเพื่อความอวบอิ่มและการยื่นออกสูงสุด MemoryGel Xtra ใช้สูตรเจลรุ่นใหม่ที่ให้ผลลัพธ์ที่เต็มและชัดเจนที่สุด ขณะที่ยังคงนุ่มและเป็นธรรมชาติเมื่อสัมผัส',
+        benefits: ['เจลเหนียวกว่า MENTOR รุ่นก่อน 99%','ยืดหยุ่นได้มากกว่า 6 เท่า ลดการย่นได้อย่างมีนัยสำคัญ','เปลือกบางกว่า 35% ให้ความรู้สึกเป็นธรรมชาติมากขึ้น','เพิ่มปริมาณบริเวณหน้าอกและรอยแตกอย่างเห็นได้ชัด','มีประวัติการใช้งานทั่วโลกที่ศัลยแพทย์ไว้วางใจ'],
+        shapeNote: 'ให้ผลดีที่สุดเมื่อใช้ร่วมกับทรงกลมเพื่อการยื่นออกสูงสุด'
+      }
+    },
+    natural: {
+      brand: 'Motiva® Silk Surface Plus',
+      pill: 'MOTIVA®', pillClass: 'p-pink', borderColor: 'var(--pink)',
+      infographic: 'images/S__5349459.jpg',
+      alts: ['active', 'safety'],
+      en: {
+        desc: 'Designed to emphasize upper breast fullness with a youthful, natural look. The slightly rounder contour gives gentle projection — subtle enhancement that looks effortlessly real.',
+        benefits: ['Gentle projection — subtle and naturally-looking result','Slightly rounder contour, not a pronounced teardrop','Emphasizes upper breast fullness for a youthful feel','Nano surface option reduces capsular contracture risk','Developed to complement, not overpower, natural anatomy'],
+        shapeNote: 'Works especially well with Teardrop shape for the most natural finish'
+      },
+      th: {
+        desc: 'ออกแบบเพื่อเน้นความอวบอิ่มบริเวณด้านบนพร้อมลุคที่เป็นธรรมชาติและดูอ่อนเยาว์ รูปทรงที่กลมขึ้นเล็กน้อยให้การยื่นออกที่อ่อนโยน การเสริมที่แนบเนียนและดูเป็นธรรมชาติ',
+        benefits: ['การยื่นออกที่อ่อนโยน ผลลัพธ์ดูเป็นธรรมชาติ','ทรงกลมขึ้นเล็กน้อย ไม่ใช่หยดน้ำที่ชัดเจน','เน้นความอวบอิ่มบริเวณด้านบนเพื่อลุคที่อ่อนเยาว์','ตัวเลือกผิว Nano ช่วยลดความเสี่ยงของ capsular contracture','พัฒนามาเพื่อเสริม ไม่ใช่เปลี่ยนกายวิภาคตามธรรมชาติ'],
+        shapeNote: 'เหมาะกับทรงหยดน้ำเป็นพิเศษเพื่อผลลัพธ์ที่เป็นธรรมชาติที่สุด'
+      }
+    },
+    safety: {
+      brand: 'Motiva® Implants',
+      pill: 'MOTIVA®', pillClass: 'p-lavender', borderColor: 'var(--lavender)',
+      infographic: 'images/S__5349459.jpg',
+      alts: ['natural', 'active'],
+      en: {
+        desc: 'A new generation of breast implants built with your long-term health as the first priority. No reported links to BIA-lymphoma, reduced contracture risk, and a highly elastic gel engineered for lasting safety.',
+        benefits: ['No reports linking to BIA-lymphoma (BIA-ALCL)','Highly elastic gel withstands up to 270% compression','Surface texture reduces formation of capsular contracture','Developed under the latest U.S. clinical standards','Available in Smooth, Textured, and Nano surface options'],
+        shapeNote: 'Available in both Round and Teardrop — compatible with your Q1 choice'
+      },
+      th: {
+        desc: 'เต้านมเทียมรุ่นใหม่ที่ออกแบบโดยให้สุขภาพระยะยาวเป็นลำดับแรก ไม่มีรายงานเชื่อมโยงกับโรค BIA-ALCL ลดความเสี่ยง capsular contracture และมีเจลที่ยืดหยุ่นสูงสำหรับความปลอดภัยที่ยาวนาน',
+        benefits: ['ไม่มีรายงานเชื่อมโยงกับโรค BIA-ALCL','เจลยืดหยุ่นสูง รับแรงกดได้ถึง 270%','พื้นผิวช่วยลดการเกิด capsular contracture','พัฒนาตามมาตรฐานทางคลินิกล่าสุดของสหรัฐฯ','มีให้เลือกทั้งผิวเรียบ ขรุขระ และ Nano'],
+        shapeNote: 'มีทั้งทรงกลมและหยดน้ำ เข้ากันได้กับตัวเลือกในคำถามที่ 1'
+      }
+    }
+  };
+
+  /* Saline override */
   const recSaline = {
-    brand:      'MENTOR® Saline Breast Implants',
-    pill:       'MENTOR®',
-    pillClass:  'p-teal',
-    borderColor:'var(--teal)',
-    desc:       'One of the first breast implants widely trusted by surgeons worldwide. Filled with sterile saline solution — even in the rare event of rupture, the saline is safely absorbed by the body. Lifetime warranty. U.S. FDA certified.',
-    benefits: [
-      'U.S. FDA certified — one of the highest standards globally',
-      'Filled with sterile saline — safe even if ruptured',
-      'Lifetime warranty on the implant',
-      'Maintains a natural shape and movement',
-      'Long global track record of safety and surgeon trust'
-    ],
-    shapeNote:  'Works well in both Round and Teardrop shapes',
+    brand: 'MENTOR® Saline Breast Implants',
+    pill: 'MENTOR®', pillClass: 'p-teal', borderColor: 'var(--teal)',
     infographic: 'images/S__5349459.jpg',
-    alts: ['projected', 'active']
+    alts: ['projected', 'active'],
+    en: {
+      desc: 'One of the first breast implants widely trusted by surgeons worldwide. Filled with sterile saline solution — even in the rare event of rupture, the saline is safely absorbed by the body. Lifetime warranty. U.S. FDA certified.',
+      benefits: ['U.S. FDA certified — one of the highest standards globally','Filled with sterile saline — safe even if ruptured','Lifetime warranty on the implant','Maintains a natural shape and movement','Long global track record of safety and surgeon trust'],
+      shapeNote: 'Works well in both Round and Teardrop shapes'
+    },
+    th: {
+      desc: 'หนึ่งในเต้านมเทียมแรกๆ ที่ศัลยแพทย์ทั่วโลกไว้วางใจ เติมด้วยน้ำเกลือปลอดเชื้อ แม้ในกรณีแตกร้าวร่างกายจะดูดซับน้ำเกลือได้อย่างปลอดภัย รับประกันตลอดชีวิต ผ่านการรับรองจาก US FDA',
+      benefits: ['ได้รับการรับรองจาก US FDA มาตรฐานสูงสุดระดับโลก','เติมด้วยน้ำเกลือปลอดเชื้อ ปลอดภัยแม้ในกรณีแตกร้าว','รับประกันตลอดชีวิต','คงรูปทรงและการเคลื่อนไหวที่เป็นธรรมชาติ','มีประวัติความปลอดภัยและการไว้วางใจของศัลยแพทย์ทั่วโลก'],
+      shapeNote: 'เหมาะกับทั้งทรงกลมและหยดน้ำ'
+    }
   };
 
-  /* Short names for alt cards */
   const altInfo = {
-    active:    { brand: 'Motiva® Ergonomix',         pill: 'MOTIVA®',  pillClass: 'p-mint',     desc: 'Adapts naturally to body movement — best for active lifestyles.' },
-    projected: { brand: 'MENTOR® MemoryGel® Xtra',   pill: 'MENTOR®',  pillClass: 'p-teal',     desc: 'Maximum projection and cleavage for a defined, noticeable result.' },
-    natural:   { brand: 'Motiva® Silk Surface Plus',  pill: 'MOTIVA®',  pillClass: 'p-pink',     desc: 'Gentle, natural-looking enhancement with a youthful silhouette.' },
-    safety:    { brand: 'Motiva® Implants',           pill: 'MOTIVA®',  pillClass: 'p-lavender', desc: 'Health-first design with no BIA-ALCL reports and reduced contracture risk.' },
-    saline:    { brand: 'MENTOR® Saline',             pill: 'MENTOR®',  pillClass: 'p-teal',     desc: 'FDA certified, lifetime warranty, and sterile saline fill.' }
+    active:    { brand: 'Motiva® Ergonomix',         pill: 'MOTIVA®',  pillClass: 'p-mint',     en: { desc: 'Adapts naturally to body movement — best for active lifestyles.' },     th: { desc: 'ปรับรูปทรงตามการเคลื่อนไหวของร่างกาย เหมาะสำหรับไลฟ์สไตล์แอคทีฟ' } },
+    projected: { brand: 'MENTOR® MemoryGel® Xtra',   pill: 'MENTOR®',  pillClass: 'p-teal',     en: { desc: 'Maximum projection and cleavage for a defined, noticeable result.' },    th: { desc: 'การยื่นออกและรอยแตกสูงสุดสำหรับผลลัพธ์ที่ชัดเจนโดดเด่น' } },
+    natural:   { brand: 'Motiva® Silk Surface Plus',  pill: 'MOTIVA®',  pillClass: 'p-pink',     en: { desc: 'Gentle, natural-looking enhancement with a youthful silhouette.' },      th: { desc: 'การเสริมที่อ่อนโยนและดูเป็นธรรมชาติพร้อมรูปทรงที่อ่อนเยาว์' } },
+    safety:    { brand: 'Motiva® Implants',           pill: 'MOTIVA®',  pillClass: 'p-lavender', en: { desc: 'Health-first design with no BIA-ALCL reports and reduced contracture risk.' }, th: { desc: 'ออกแบบเพื่อสุขภาพก่อน ไม่มีรายงาน BIA-ALCL และลดความเสี่ยง capsular contracture' } },
+    saline:    { brand: 'MENTOR® Saline',             pill: 'MENTOR®',  pillClass: 'p-teal',     en: { desc: 'FDA certified, lifetime warranty, and sterile saline fill.' },           th: { desc: 'ได้รับการรับรอง FDA รับประกันตลอดชีวิต และเติมด้วยน้ำเกลือปลอดเชื้อ' } }
   };
-
-  /* Human-readable labels for answer chips */
-  const shapeLabels    = { round: 'Round — Fuller & Defined', teardrop: 'Teardrop — Natural & Lifted' };
-  const surfaceLabels  = { smooth: 'Smooth — Classic & Proven', textured: 'Textured — Stable & Secure', nano: 'Nano — Advanced Science' };
-  const lifeLabels     = { active: 'Always Active', projected: 'Noticeable Result', natural: 'Natural Above All', safety: 'Safety First' };
 
   /* ─── SELECT OPTION ─── */
   function selectOption(card) {
     const parent = card.closest('.options-grid');
     parent.querySelectorAll('.option-card').forEach(c => c.classList.remove('selected'));
     card.classList.add('selected');
-
-    const stepEl = card.closest('.quiz-step');
-    const key    = card.dataset.key;
+    const key = card.dataset.key;
     answers[key] = card.dataset.value;
-
-    /* Find next button in this step */
-    const btn = stepEl.querySelector('.next-btn');
-    btn.classList.add('enabled');
+    card.closest('.quiz-step').querySelector('.next-btn').classList.add('enabled');
   }
 
   /* ─── GO TO STEP ─── */
   function goToStep(num) {
-    /* Disable if btn not enabled */
     const currentStep = document.querySelector('.quiz-step.active');
     if (!currentStep) return;
-
-    /* Animate out */
     currentStep.classList.add('exit');
     setTimeout(() => {
       currentStep.classList.remove('active', 'exit');
       currentStep.style.display = 'none';
-
       const nextStep = document.getElementById('step' + num);
       nextStep.style.display = '';
       nextStep.classList.add('active');
-
       updateProgress(num);
       document.getElementById('quiz').scrollIntoView({ behavior: 'smooth', block: 'start' });
     }, 280);
@@ -1500,14 +1093,10 @@
       const sm = document.getElementById('sm' + i);
       const sl = document.getElementById('sl' + i);
       if (i < activeStep)       { sm.classList.remove('active'); sm.classList.add('done'); sm.textContent = '✓'; }
-      else if (i === activeStep){ sm.classList.add('active'); sm.classList.remove('done'); }
-      else                      { sm.classList.remove('active', 'done'); sm.textContent = i; }
-
-      if (sl) {
-        sl.classList.toggle('active-label', i === activeStep);
-      }
+      else if (i === activeStep){ sm.classList.add('active'); sm.classList.remove('done'); sm.textContent = i < 4 ? i : '✓'; }
+      else                      { sm.classList.remove('active', 'done'); sm.textContent = i < 4 ? i : '✓'; }
+      if (sl) sl.classList.toggle('active-label', i === activeStep);
     });
-
     [1,2,3].forEach(i => {
       const fill = document.getElementById('sc' + i);
       if (fill) fill.classList.toggle('filled', i < activeStep);
@@ -1515,96 +1104,63 @@
   }
 
   /* ─── SHOW RESULT ─── */
-  function showResult() {
-    /* Determine recommendation */
-    let rec;
-    if (answers.lifestyle === 'safety' && answers.surface === 'smooth') {
-      rec = recSaline;
-    } else {
-      rec = recs[answers.lifestyle] || recs['safety'];
-    }
+  function showResult(skipTransition) {
+    let rec = (answers.lifestyle === 'safety' && answers.surface === 'smooth')
+      ? recSaline
+      : (recs[answers.lifestyle] || recs['safety']);
 
-    /* Build answer chips */
+    const L = currentLang;
+    const ld = rec[L] || rec['en'];
+    const sl = translations[L];
+
     const chipHTML = `
-      <div class="answer-chip">
-        <span class="chip-label">Look</span>
-        ${shapeLabels[answers.shape] || answers.shape}
-      </div>
-      <div class="answer-chip">
-        <span class="chip-label">Priority</span>
-        ${surfaceLabels[answers.surface] || answers.surface}
-      </div>
-      <div class="answer-chip">
-        <span class="chip-label">Lifestyle</span>
-        ${lifeLabels[answers.lifestyle] || answers.lifestyle}
-      </div>
+      <div class="answer-chip"><span class="chip-label">${sl.chip_look}</span>${(sl.shape_labels[answers.shape] || answers.shape)}</div>
+      <div class="answer-chip"><span class="chip-label">${sl.chip_priority}</span>${(sl.surface_labels[answers.surface] || answers.surface)}</div>
+      <div class="answer-chip"><span class="chip-label">${sl.chip_lifestyle}</span>${(sl.life_labels[answers.lifestyle] || answers.lifestyle)}</div>
     `;
 
-    /* Build benefits list */
-    const benefitsHTML = rec.benefits.map(b => `
-      <li>
-        <span class="benefit-check">
-          <svg viewBox="0 0 12 12"><polyline points="1.5,6 4.5,9.5 10.5,2.5"/></svg>
-        </span>
-        ${b}
-      </li>
+    const benefitsHTML = ld.benefits.map(b => `
+      <li><span class="benefit-check"><svg viewBox="0 0 12 12"><polyline points="1.5,6 4.5,9.5 10.5,2.5"/></svg></span>${b}</li>
     `).join('');
 
-    /* Build alt cards */
     const altsHTML = rec.alts.map(k => {
       const a = altInfo[k] || {};
-      return `
-        <div class="alt-card">
-          <div class="alt-pill ${a.pillClass}">${a.pill}</div>
-          <div>
-            <h5>${a.brand}</h5>
-            <p>${a.desc}</p>
-          </div>
-        </div>
-      `;
+      return `<div class="alt-card">
+        <div class="alt-pill ${a.pillClass}">${a.pill}</div>
+        <div><h5>${a.brand}</h5><p>${(a[L] || a['en']).desc}</p></div>
+      </div>`;
     }).join('');
 
-    /* Build result HTML */
     const resultEl = document.getElementById('stepResult');
     resultEl.innerHTML = `
       <div>
         <div class="result-header">
-          <div class="result-confetti-badge">🎉 Your Personalized Match</div>
-          <h2>We Found Your Fit</h2>
-          <p>Based on your answers, here's what we recommend for you.</p>
+          <div class="result-confetti-badge">${sl.result_badge}</div>
+          <h2>${sl.result_h2}</h2>
+          <p>${sl.result_p}</p>
         </div>
-
         <div class="answer-chips">${chipHTML}</div>
-
         <div class="result-card-wrap">
           <div>
             <div class="result-card" style="border-top-color: ${rec.borderColor};">
               <div class="result-pill ${rec.pillClass}">${rec.pill}</div>
               <div class="result-brand-name">${rec.brand}</div>
-              <p class="result-desc">${rec.desc}</p>
-
+              <p class="result-desc">${ld.desc}</p>
               <ul class="result-benefits">${benefitsHTML}</ul>
-
-              <div class="shape-note">
-                <span class="shape-note-icon">💡</span>
-                ${rec.shapeNote}
-              </div>
+              <div class="shape-note"><span class="shape-note-icon">💡</span>${ld.shapeNote}</div>
             </div>
-
             <div class="result-cta-bar" style="margin-top: 28px;">
-              <a href="tel:022498855" class="btn-book">Book a Consultation <span>→</span></a>
-              <button class="btn-retake" onclick="retakeQuiz()">↺ Retake Quiz</button>
+              <a href="tel:022498855" class="btn-book">${sl.book_cta} <span>→</span></a>
+              <button class="btn-retake" onclick="retakeQuiz()">${sl.retake}</button>
             </div>
           </div>
-
           <div class="result-right">
-            <div class="ref-label">Reference Guide</div>
+            <div class="ref-label">${sl.result_ref}</div>
             <div class="infographic-frame" style="margin-bottom: 24px;">
               <img src="${rec.infographic}" alt="Implant Reference Guide">
             </div>
-
             <div class="also-consider">
-              <h4>Also Consider</h4>
+              <h4>${sl.also_consider}</h4>
               ${altsHTML}
             </div>
           </div>
@@ -1612,7 +1168,8 @@
       </div>
     `;
 
-    /* Transition to result */
+    if (skipTransition) return;
+
     const currentStep = document.querySelector('.quiz-step.active');
     if (currentStep) {
       currentStep.classList.add('exit');
@@ -1629,21 +1186,13 @@
 
   /* ─── RETAKE ─── */
   function retakeQuiz() {
-    answers.shape = null;
-    answers.surface = null;
-    answers.lifestyle = null;
-
-    /* Hide result, reset steps */
+    answers.shape = answers.surface = answers.lifestyle = null;
     const resultEl = document.getElementById('stepResult');
     resultEl.classList.remove('active');
     resultEl.style.display = 'none';
     resultEl.innerHTML = '';
-
-    /* Reset option selections */
     document.querySelectorAll('.option-card.selected').forEach(c => c.classList.remove('selected'));
     document.querySelectorAll('.next-btn').forEach(b => b.classList.remove('enabled'));
-
-    /* Show step 1 */
     const s1 = document.getElementById('step1');
     s1.style.display = '';
     s1.classList.add('active');
@@ -1652,20 +1201,17 @@
   }
 
   /* ─── NAV SHADOW ─── */
-  const nav = document.getElementById('mainNav');
   window.addEventListener('scroll', () => {
-    nav.style.boxShadow = window.scrollY > 16
-      ? '0 4px 30px rgba(0,0,0,0.08)'
-      : 'none';
+    document.getElementById('mainNav').style.boxShadow = window.scrollY > 16
+      ? '0 4px 30px rgba(0,0,0,0.08)' : 'none';
   }, { passive: true });
 
   /* ─── PARALLAX HERO ─── */
   const heroBg = document.getElementById('heroBg');
   window.addEventListener('scroll', () => {
     const y = window.pageYOffset;
-    if (heroBg && y < window.innerHeight * 1.2) {
+    if (heroBg && y < window.innerHeight * 1.2)
       heroBg.style.transform = `scale(1.08) translateY(${y * 0.26}px)`;
-    }
   }, { passive: true });
 </script>
 
